@@ -1,60 +1,119 @@
-# PRessence Website (Next.js + Tailwind + Sanity + Vercel)
+# PRessence Website
 
-Proyecto base listo para:
-- Sitio corporativo (Inicio, Servicios, Sobre, Contacto)
-- Blog administrable con Sanity (sin programar)
-- Hosting en Vercel con dominio propio
-- Tipografías Google Fonts: Montserrat (principal) y Plus Jakarta Sans como sustituto de Telegraf
+Sitio web corporativo de PRessence construido con **Next.js**, **Tailwind CSS**, **Sanity CMS** y deployado en **Vercel**.
 
-## Requisitos
-- Node 18+
-- Cuenta en Sanity (gratis)
-- Cuenta en Vercel (gratis)
+## ✨ Características
 
-## 1) Instalar
+- 🏢 **Sitio corporativo** con páginas de Inicio, Servicios, Sobre Nosotros y Contacto
+- 📝 **Blog administrable** a través de Sanity CMS
+- 🚀 **Hosting optimizado** en Vercel con dominio personalizado
+- 🎨 **Diseño responsive** desarrollado con Tailwind CSS
+- ⚡ **Rendimiento optimizado** con ISR (Incremental Static Regeneration)
+- 📱 **Integración con Calendly** para gestión de citas
+- 📧 **Formularios de contacto** integrados con Formspree
+
+## 🛠️ Stack Tecnológico
+
+- **Framework**: Next.js 14
+- **Estilos**: Tailwind CSS
+- **CMS**: Sanity
+- **Hosting**: Vercel
+- **Tipografías**: Google Fonts (Montserrat + Plus Jakarta Sans)
+- **Formularios**: Formspree
+- **Calendarios**: Calendly
+
+## 📋 Requisitos
+
+- Node.js 18 o superior
+- Sanity CMS para la gestión del blog
+- Vercel para el hosting
+- Formspree para los formularios de contacto
+- Calendly para la gestión de citas
+
+## 🚀 Instalación y Configuración
+
+### 1. Instalación de dependencias
+
 ```bash
 npm install
 ```
 
-## 2) Configurar variables
-Crea un archivo `.env.local` en la raíz, basado en `.env.example`:
-```
-NEXT_PUBLIC_SANITY_PROJECT_ID=...
+### 2. Configuración de variables de entorno
+
+El archivo `.env.local` contiene la configuración necesaria:
+
+```env
+# Sanity CMS
+NEXT_PUBLIC_SANITY_PROJECT_ID=project_id
 NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/tuusuario
+
+# Integraciones
+NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/pressence
 NEXT_PUBLIC_FORM_ENDPOINT=https://formspree.io/f/XXXXX
 ```
 
-## 3) Sanity (CMS)
-1. Instala CLI: `npm i -g @sanity/cli`
-2. Crea un proyecto: `sanity init` (elige dataset `production`)
-3. Crea el esquema `post` en tu Studio con estos campos:
-   - title (string)
-   - slug (slug, source: title)
-   - date (datetime)
-   - image (image)
-   - category (string)
-   - content (array of block)
-4. Copia tu `projectId` y `dataset` al `.env.local`
+### 3. Configuración de Sanity CMS
 
-## 4) Ejecutar en local
+El CMS está configurado con el esquema `post` que incluye:
+
+- Título y slug del artículo
+- Fecha de publicación
+- Imagen destacada
+- Categoría
+- Contenido rich text
+
+### 4. Desarrollo
+
 ```bash
 npm run dev
 ```
 
-## 5) Deploy a Vercel
-1. Sube a GitHub
-2. Importa el repo en Vercel
-3. En "Settings → Environment Variables" agrega las variables del `.env.local`
-4. Deploy
-5. En "Settings → Domains" agrega tu dominio `.com` y ajusta DNS en tu registrador
+La aplicación estará disponible en `http://localhost:3000`
 
-## 6) Tipografías
-- Se usan **Google Fonts** con `next/font/google`:
-  - Montserrat → `--font-montserrat`
-  - Plus Jakarta Sans (sustituye Telegraf) → `--font-display`
-- Si tienes licencia de **Telegraf**, coloca los archivos en `public/fonts/Telegraf` y actualiza `_app.js` para usar `next/font/local` con `--font-display`.
+### 5. Deploy
 
-## Notas
-- La consulta a Sanity usa ISR (revalidate: 60s).
-- El renderer de contenido es básico (párrafos y títulos). Puedes mejorar con un renderer de Portable Text si lo deseas.
+El sitio está deployado en Vercel con todas las variables de entorno configuradas.
+
+### 6. Dominio
+
+El sitio cuenta con un dominio personalizado configurado a través de Vercel.
+
+## 🎨 Tipografías
+
+El sitio utiliza **Google Fonts** optimizadas:
+
+- **Montserrat**: Tipografía principal
+- **Plus Jakarta Sans**: Tipografía display
+
+### Telegraf (alternativa)
+
+El proyecto está preparado para utilizar la tipografía **Telegraf** como alternativa a Plus Jakarta Sans, colocando los archivos en `public/fonts/Telegraf/` y configurando `next/font/local`.
+
+## 📁 Estructura del Proyecto
+
+```
+├── components/          # Componentes React reutilizables
+├── pages/              # Páginas de Next.js
+├── public/             # Archivos estáticos
+├── styles/             # Archivos CSS/Tailwind
+├── lib/                # Utilidades y configuración
+├── sanity/             # Configuración de Sanity
+└── README.md
+```
+
+## ⚙️ Características Técnicas
+
+- **ISR**: Las consultas a Sanity se revalidan cada 60 segundos
+- **Optimización de imágenes**: Implementación de Next.js Image component
+- **SEO optimizado**: Meta tags y sitemap configurados
+- **Diseño responsive**: Compatible con todos los dispositivos
+
+## 📝 Notas
+
+- El renderer de contenido del blog maneja párrafos y títulos básicos
+- Las variables de entorno están configuradas para producción y desarrollo
+- El sitio está optimizado para rendimiento y SEO
+
+---
+
+Hecho con ❤️ para PRessence
