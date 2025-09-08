@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
+import Image from 'next/image'
+
 
 export default function Home() {
   return (
@@ -74,9 +76,17 @@ export default function Home() {
             </p>
             <Link href="/about" className="text-primary mt-3 inline-block">Conócenos →</Link>
           </div>
-          <div className="card min-h-[200px] flex items-center justify-center">Foto/ilustración</div>
+          <div className="card min-h-[200px] flex items-center justify-center overflow-hidden relative">
+            <Image
+              src="/images/quienes-somos.jpg" // ruta de tu imagen
+              alt="Quiénes somos"
+              fill
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
         </div>
       </section>
+
 
       {/* Testimonios con borde azul */}
       <section className="section-gradient py-16">

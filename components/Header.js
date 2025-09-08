@@ -24,7 +24,7 @@ export default function Header() {
             Servicios
           </Link>
           <Link href="/about" className="text-white hover:text-gray-200 transition-colors">
-            Sobre Nosotros
+            Sobre Nosotras
           </Link>
           <Link href="/blog" className="text-white hover:text-gray-200 transition-colors">
             Blog

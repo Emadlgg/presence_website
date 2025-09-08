@@ -31,10 +31,11 @@ export default function Hero() {
           Be seen. <span className="text-primary">Lead loud.</span> Stay ahead.
         </h1>
         <p className="text-lg md:text-xl mb-8">
-          PRessence es una boutique dedicada a impulsar la huella única de cada fundador.
-          Transformamos su historia, experiencia y visión en una marca personal sólida
-          que inspire confianza, genere influencia y abra puertas a nuevas oportunidades.
+          PRessence es una boutique dedicada a <span className="font-black">impulsar la huella única</span> de cada fundador.
+          Transformamos su historia, experiencia y visión en una <span className="font-black">marca personal sólida </span>
+           que inspire confianza, genere influencia y abra puertas a <span className="font-black">nuevas oportunidades</span>.
         </p>
+
         <Link
           href="/contact"
           className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-600 transition"
