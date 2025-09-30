@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 
 export default function Home() {
@@ -44,27 +45,60 @@ export default function Home() {
           }}
         >
           {[
-            'Cobertura de eventos',
-            'Redacción discursos estratégicos',
-            'Asesoría de imagen',
-            'Expresión persuasiva',
-            'Fotografías profesionales',
-            'Media training',
-            'Estrategia de contenido digital',
-            'Narrativa de impacto'
+            { title: 'Cobertura de eventos', type: 'video', src: '/videos/eventos.mp4' },
+            { title: 'Redacción discursos estratégicos', type: 'video', src: '/videos/discursos.mp4' },
+            { title: 'Asesoría de imagen', type: 'video', src: '/videos/asesoria.mp4' },
+            { title: 'Expresión persuasiva', type: 'image', src: '/images/expresion.jpg' },
+            { title: 'Fotografías profesionales', type: 'image', src: '/images/fotografias.jpg' },
+            { title: 'Media training', type: 'image', src: '/images/media-training.jpg' },
+            { title: 'Estrategia de contenido digital', type: 'video', src: '/videos/contenido.mp4' },
+            { title: 'Narrativa de impacto', type: 'image', src: '/images/narrativa.jpg' }
           ].map((s) => (
-            <SwiperSlide key={s}>
+            <SwiperSlide key={s.title}>
               <div
                 onClick={() => window.location.href = '/services'}
-                className="cursor-pointer h-48 flex items-center justify-center text-lg font-semibold bg-white border-2 transition hover:shadow-lg"
-                style={{ borderColor: '#16367D', color: '#16367D' }}
+                className="relative cursor-pointer h-64 rounded-lg overflow-hidden group"
               >
-                {s}
+                {/* Imagen o Video dinámico */}
+                {s.type === 'image' ? (
+                  <Image
+                    src={s.src}
+                    alt={s.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                ) : (
+                  <video
+                    src={s.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+
+                {/* Overlay oscuro */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition"></div>
+
+                {/* Texto animado */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="text-white text-xl font-semibold text-center px-4"
+                  >
+                    {s.title}
+                  </motion.h3>
+                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </section>
+
 
       {/* Quiénes somos */}
       <section className="section-gradient py-16">
@@ -78,7 +112,7 @@ export default function Home() {
           </div>
           <div className="card min-h-[200px] flex items-center justify-center overflow-hidden relative">
             <Image
-              src="/images/quienes-somos.jpg" // ruta de tu imagen
+              src="/images/quienes-somos.jpg"
               alt="Quiénes somos"
               fill
               style={{ objectFit: 'cover' }}
@@ -87,25 +121,40 @@ export default function Home() {
         </div>
       </section>
 
-
       {/* Testimonios con borde azul */}
       <section className="section-gradient py-16">
         <div className="container-max">
           <h2 className="font-display text-3xl mb-8" style={{ color: '#16367D' }}>Testimonios</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              { text: '"Gracias a PRessence logré posicionarme como líder en mi sector."', author: 'Cliente 1' },
-              { text: '"Su asesoría me dio claridad y proyección para mi marca personal."', author: 'Cliente 2' }
-            ].map((t, i) => (
-              <div
-                key={i}
-                className="p-6 bg-white border-2 rounded-lg shadow-sm"
-                style={{ borderColor: '#16367D' }}
-              >
-                <p className="italic text-gray-700">{t.text}</p>
-                <p className="mt-4 font-semibold" style={{ color: '#16367D' }}>— {t.author}</p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Testimonio Silvia */}
+            <div
+              className="p-6 bg-white border-2 rounded-lg shadow-sm"
+              style={{ borderColor: '#16367D' }}
+            >
+              <p className="italic text-gray-700">“Me acompañaron en aspectos claves para el lanzamiento.”</p>
+              <p className="italic text-gray-700 mt-2">“Tranquilamente disfruté del evento y compartí con los invitados.”</p>
+              <p className="italic text-gray-700 mt-2">“Me siento afortunada de haberlas encontrado en ese momento.”</p>
+              <p className="mt-4 font-semibold" style={{ color: '#16367D' }}>— Silvia Monzón, fundadora de Convicción Leasing</p>
+            </div>
+
+            {/* Testimonio Vany */}
+            <div
+              className="p-6 bg-white border-2 rounded-lg shadow-sm"
+              style={{ borderColor: '#16367D' }}
+            >
+              <p className="italic text-gray-700">“Las chicas fueron súper ordenadas en la metodología.”</p>
+              <p className="italic text-gray-700 mt-2">“Inmediatamente incrementé seguidores e hice conexiones nuevas.”</p>
+              <p className="mt-4 font-semibold" style={{ color: '#16367D' }}>— Vany Argueta, gerente de área en Pollo Campero / Project Manager en CMI</p>
+            </div>
+
+            {/* Testimonio Roberto */}
+            <div
+              className="p-6 bg-white border-2 rounded-lg shadow-sm"
+              style={{ borderColor: '#16367D' }}
+            >
+              <p className="italic text-gray-700">“El servicio que brindan es de primera calidad. Nosotros no tuvimos nada que decirles, todo estaba controlado por ellas.”</p>
+              <p className="mt-4 font-semibold" style={{ color: '#16367D' }}>— Roberto Morales, presidente de la gremial de recursos naturales, minas y canteras (GRENAT)</p>
+            </div>
           </div>
         </div>
       </section>
