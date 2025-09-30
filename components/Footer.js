@@ -22,9 +22,9 @@ export default function Footer() {
         <div className="text-sm">
           <div className="font-semibold mb-2">Contacto</div>
           <ul className="space-y-1">
-            <li><a href="mailto:contacto@pressence.com">contacto@pressence.com</a></li>
-            <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
-            <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+            <li><a href="mailto:pressencepragency@gmail.com">pressencepragency@gmail.com</a></li>
+            <li><a href="https://www.linkedin.com/company/pressencepr/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/pressencepr?utm_source=ig_web_button_share_sheet&igsh=MTQ2MjBjcnNlNnlsdg==" target="_blank">Instagram</a></li>
           </ul>
         </div>
       </div>
