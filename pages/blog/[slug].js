@@ -1,35 +1,113 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import { getPostBySlug, getPosts } from '../../lib/notion'
+import Image from 'next/image'
 
-export default function BlogPost() {
-  const router = useRouter();
-  const { slug } = router.query;
+export default function BlogPost({ post }) {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Cargando...</div>
+  }
+
+  if (!post) {
+    return (
+      <div>
+        <Header />
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 min-h-screen flex flex-col items-center justify-center text-center bg-gray-50">
+          <h1 className="text-3xl sm:text-4xl font-display mb-4" style={{ color: '#16367D' }}>
+            Artículo no disponible
+          </h1>
+          <p className="text-lg text-gray-600 max-w-xl mb-6">
+            El artículo no está disponible o no existe.
+          </p>
+          <Link
+            href="/blog"
+            className="px-5 py-3 rounded-full font-medium transition-colors"
+            style={{ backgroundColor: '#16367D', color: '#FFFFFF' }}
+          >
+            Volver al blog
+          </Link>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 min-h-screen flex flex-col items-center justify-center text-center bg-gray-50">
-      <h1
-        className="text-3xl sm:text-4xl font-display mb-4"
-        style={{ color: '#16367D' }} // Azul principal
-      >
-        Artículo no disponible
-      </h1>
-      <p className="text-lg text-gray-600 max-w-xl mb-6">
-        El artículo{' '}
-        <span className="font-semibold text-gray-800">
-          {slug}
-        </span>{' '}
-        no está disponible o no existe.
-      </p>
-      <Link
-        href="/blog"
-        className="px-5 py-3 rounded-full font-medium transition-colors"
-        style={{
-          backgroundColor: '#16367D', // Azul principal
-          color: '#FFFFFF',
-        }}
-      >
-        Volver al blog
-      </Link>
-    </main>
-  );
+    <div>
+      <Header />
+      <main className="container-max py-16">
+        <article className="max-w-3xl mx-auto">
+          {/* Imagen destacada */}
+          {post.image && (
+            <div className="relative w-full h-96 mb-8 rounded-lg overflow-hidden">
+              <Image src={post.image} alt={post.title} fill style={{ objectFit: 'cover' }} />
+            </div>
+          )}
+
+          {/* Metadata */}
+          <div className="mb-6">
+            <div className="badge mb-4">{post.category}</div>
+            <h1 className="font-display text-4xl mb-4" style={{ color: '#16367D' }}>
+              {post.title}
+            </h1>
+            <div className="text-sm text-gray-500">
+              {new Date(post.date).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </div>
+          </div>
+
+          {/* Contenido */}
+          <div
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+
+          {/* Botón volver */}
+          <div className="mt-12">
+            <Link href="/blog" className="text-primary hover:underline">
+              ← Volver al blog
+            </Link>
+          </div>
+        </article>
+      </main>
+      <Footer />
+    </div>
+  )
+}
+
+export async function getStaticPaths() {
+  const posts = await getPosts()
+
+  const paths = posts.map((post) => ({
+    params: { slug: post.slug },
+  }))
+
+  return {
+    paths,
+    fallback: true,
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const post = await getPostBySlug(params.slug)
+
+  if (!post) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      post,
+    },
+    revalidate: 60,
+  }
 }
