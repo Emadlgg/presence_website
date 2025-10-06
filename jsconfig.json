@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["*"]
-    }
-  }
+    "checkJs": false,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx"
+  },
+  "exclude": ["node_modules", ".next"]
 }
