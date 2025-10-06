@@ -2,13 +2,17 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import PostCard from '../components/PostCard'
 import { getPosts } from '../lib/notion'
+import Head from 'next/head'
 
 export default function Blog({ posts }) {
   if (!posts || posts.length === 0) {
     return (
-      <div>
+      <>
+        <Head>
+          <title>Blog - PRessence</title>
+        </Head>
         <Header />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 min-h-screen flex flex-col items-center justify-center text-center bg-gray-50">
+        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col items-center justify-center text-center bg-gray-50">
           <h1 className="text-4xl sm:text-5xl font-display mb-6" style={{ color: '#16367D' }}>
             Blog
           </h1>
@@ -19,14 +23,17 @@ export default function Blog({ posts }) {
           </p>
         </main>
         <Footer />
-      </div>
+      </>
     )
   }
 
   return (
-    <div>
+    <>
+      <Head>
+        <title>Blog - PRessence</title>
+      </Head>
       <Header />
-      <main className="container-max py-16">
+      <main className="flex-1 container-max py-16">
         <h1 className="font-display text-4xl mb-8" style={{ color: '#16367D' }}>
           Blog
         </h1>
@@ -37,7 +44,7 @@ export default function Blog({ posts }) {
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   )
 }
 
@@ -48,6 +55,6 @@ export async function getStaticProps() {
     props: {
       posts,
     },
-    revalidate: 60, // Revalidar cada 60 segundos
+    revalidate: 60,
   }
 }

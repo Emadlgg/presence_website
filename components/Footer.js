@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="mt-16 bg-primaryBlue text-white">
-      <div className="container-max py-10 grid md:grid-cols-3 gap-8">
+    <footer className="mt-auto bg-primaryBlue text-white">
+      <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
         <div>
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-full bg-primary"></div>
@@ -23,8 +23,8 @@ export default function Footer() {
           <div className="font-semibold mb-2">Contacto</div>
           <ul className="space-y-1">
             <li><a href="mailto:pressencepragency@gmail.com">pressencepragency@gmail.com</a></li>
-            <li><a href="https://www.linkedin.com/company/pressencepr/" target="_blank">LinkedIn</a></li>
-            <li><a href="https://www.instagram.com/pressencepr?utm_source=ig_web_button_share_sheet&igsh=MTQ2MjBjcnNlNnlsdg==" target="_blank">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/pressencepr/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/pressencepr?utm_source=ig_web_button_share_sheet&igsh=MTQ2MjBjcnNlNnlsdg==" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           </ul>
         </div>
       </div>

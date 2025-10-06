@@ -1,12 +1,16 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Head from 'next/head'
 
 export default function About() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>Sobre Nosotras - PRessence</title>
+      </Head>
       <Header />
 
-      <main className="container-max py-16">
+      <main className="flex-1 container-max py-16">
         {/* Título principal con línea decorativa */}
         <div className="text-center mb-12">
           <h1 className="font-display text-4xl inline-block relative" style={{ color: '#16367D' }}>
@@ -48,7 +52,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* Valores con espacio para descripción */}
+        {/* Valores */}
         <section className="mb-16 bg-[#E6ECF8] p-8 rounded-lg">
           <h2 className="text-2xl font-semibold mb-6" style={{ color: '#16367D' }}>
             Valores
@@ -107,6 +111,6 @@ export default function About() {
       </main>
 
       <Footer />
-    </div>
+    </>
   )
 }

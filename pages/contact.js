@@ -1,14 +1,18 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Head from 'next/head'
 
 export default function Contact() {
   const calendly = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/tuusuario'
   const formEndpoint = process.env.NEXT_PUBLIC_FORM_ENDPOINT || 'https://formspree.io/f/XXXXX'
 
   return (
-    <div>
+    <>
+      <Head>
+        <title>Contacto - PRessence</title>
+      </Head>
       <Header />
-      <main className="container-max py-16 grid md:grid-cols-2 gap-10">
+      <main className="flex-1 container-max py-16 grid md:grid-cols-2 gap-10">
         <section>
           <h1 className="font-display text-3xl mb-6" style={{color:'#16367d'}}>Agenda tu diagnóstico</h1>
           <div className="rounded-2xl overflow-hidden shadow-soft">
@@ -26,6 +30,6 @@ export default function Contact() {
         </section>
       </main>
       <Footer />
-    </div>
+    </>
   )
 }

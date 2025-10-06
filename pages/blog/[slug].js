@@ -4,6 +4,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { getPostBySlug, getPosts } from '../../lib/notion'
 import Image from 'next/image'
+import Head from 'next/head'
 
 export default function BlogPost({ post }) {
   const router = useRouter()
@@ -14,9 +15,12 @@ export default function BlogPost({ post }) {
 
   if (!post) {
     return (
-      <div>
+      <>
+        <Head>
+          <title>Artículo no disponible - PRessence</title>
+        </Head>
         <Header />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 min-h-screen flex flex-col items-center justify-center text-center bg-gray-50">
+        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex flex-col items-center justify-center text-center bg-gray-50">
           <h1 className="text-3xl sm:text-4xl font-display mb-4" style={{ color: '#16367D' }}>
             Artículo no disponible
           </h1>
@@ -32,23 +36,24 @@ export default function BlogPost({ post }) {
           </Link>
         </main>
         <Footer />
-      </div>
+      </>
     )
   }
 
   return (
-    <div>
+    <>
+      <Head>
+        <title>{post.title} - PRessence Blog</title>
+      </Head>
       <Header />
-      <main className="container-max py-16">
+      <main className="flex-1 container-max py-16">
         <article className="max-w-3xl mx-auto">
-          {/* Imagen destacada */}
           {post.image && (
             <div className="relative w-full h-96 mb-8 rounded-lg overflow-hidden">
               <Image src={post.image} alt={post.title} fill style={{ objectFit: 'cover' }} />
             </div>
           )}
 
-          {/* Metadata */}
           <div className="mb-6">
             <div className="badge mb-4">{post.category}</div>
             <h1 className="font-display text-4xl mb-4" style={{ color: '#16367D' }}>
@@ -63,13 +68,11 @@ export default function BlogPost({ post }) {
             </div>
           </div>
 
-          {/* Contenido */}
           <div
             className="prose prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
 
-          {/* Botón volver */}
           <div className="mt-12">
             <Link href="/blog" className="text-primary hover:underline">
               ← Volver al blog
@@ -78,7 +81,7 @@ export default function BlogPost({ post }) {
         </article>
       </main>
       <Footer />
-    </div>
+    </>
   )
 }
 

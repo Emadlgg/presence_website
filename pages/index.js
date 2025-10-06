@@ -7,11 +7,14 @@ import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-
+import Head from 'next/head'
 
 export default function Home() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>PRessence - Be seen. Lead loud. Stay ahead.</title>
+      </Head>
       <Header />
       <Hero />
 
@@ -59,7 +62,6 @@ export default function Home() {
                 onClick={() => window.location.href = '/services'}
                 className="relative cursor-pointer h-64 rounded-lg overflow-hidden group"
               >
-                {/* Imagen o Video dinámico */}
                 {s.type === 'image' ? (
                   <Image
                     src={s.src}
@@ -78,10 +80,8 @@ export default function Home() {
                   />
                 )}
 
-                {/* Overlay oscuro */}
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition"></div>
 
-                {/* Texto animado */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.h3
                     initial={{ opacity: 0, y: 20 }}
@@ -98,7 +98,6 @@ export default function Home() {
           ))}
         </Swiper>
       </section>
-
 
       {/* Quiénes somos */}
       <section className="section-gradient py-16">
@@ -121,38 +120,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonios con borde azul */}
+      {/* Testimonios */}
       <section className="section-gradient py-16">
         <div className="container-max">
           <h2 className="font-display text-3xl mb-8" style={{ color: '#16367D' }}>Testimonios</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Testimonio Silvia */}
             <div
               className="p-6 bg-white border-2 rounded-lg shadow-sm"
               style={{ borderColor: '#16367D' }}
             >
-              <p className="italic text-gray-700">“Me acompañaron en aspectos claves para el lanzamiento.”</p>
-              <p className="italic text-gray-700 mt-2">“Tranquilamente disfruté del evento y compartí con los invitados.”</p>
-              <p className="italic text-gray-700 mt-2">“Me siento afortunada de haberlas encontrado en ese momento.”</p>
+              <p className="italic text-gray-700">"Me acompañaron en aspectos claves para el lanzamiento."</p>
+              <p className="italic text-gray-700 mt-2">"Tranquilamente disfruté del evento y compartí con los invitados."</p>
+              <p className="italic text-gray-700 mt-2">"Me siento afortunada de haberlas encontrado en ese momento."</p>
               <p className="mt-4 font-semibold" style={{ color: '#16367D' }}>— Silvia Monzón, fundadora de Convicción Leasing</p>
             </div>
 
-            {/* Testimonio Vany */}
             <div
               className="p-6 bg-white border-2 rounded-lg shadow-sm"
               style={{ borderColor: '#16367D' }}
             >
-              <p className="italic text-gray-700">“Las chicas fueron súper ordenadas en la metodología.”</p>
-              <p className="italic text-gray-700 mt-2">“Inmediatamente incrementé seguidores e hice conexiones nuevas.”</p>
+              <p className="italic text-gray-700">"Las chicas fueron súper ordenadas en la metodología."</p>
+              <p className="italic text-gray-700 mt-2">"Inmediatamente incrementé seguidores e hice conexiones nuevas."</p>
               <p className="mt-4 font-semibold" style={{ color: '#16367D' }}>— Vany Argueta, gerente de área en Pollo Campero / Project Manager en CMI</p>
             </div>
 
-            {/* Testimonio Roberto */}
             <div
               className="p-6 bg-white border-2 rounded-lg shadow-sm"
               style={{ borderColor: '#16367D' }}
             >
-              <p className="italic text-gray-700">“El servicio que brindan es de primera calidad. Nosotros no tuvimos nada que decirles, todo estaba controlado por ellas.”</p>
+              <p className="italic text-gray-700">"El servicio que brindan es de primera calidad. Nosotros no tuvimos nada que decirles, todo estaba controlado por ellas."</p>
               <p className="mt-4 font-semibold" style={{ color: '#16367D' }}>— Roberto Morales, presidente de la gremial de recursos naturales, minas y canteras (GRENAT)</p>
             </div>
           </div>
@@ -160,6 +156,6 @@ export default function Home() {
       </section>
 
       <Footer />
-    </div>
+    </>
   )
 }

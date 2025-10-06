@@ -1,6 +1,7 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ServiceCard from '../components/ServiceCard'
+import Head from 'next/head'
 
 const services = [
   { title: 'Cobertura de eventos', description: 'Fotografías y video profesional para potenciar presencia en LinkedIn y otros canales.' },
@@ -15,15 +16,18 @@ const services = [
 
 export default function Services() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>Servicios - PRessence</title>
+      </Head>
       <Header />
-      <main className="container-max py-16">
+      <main className="flex-1 container-max py-16">
         <h1 className="font-display text-3xl mb-8" style={{color:'#16367d'}}>Servicios</h1>
         <div className="grid md:grid-cols-3 gap-6">
           {services.map(s => <ServiceCard key={s.title} {...s} />)}
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   )
 }
